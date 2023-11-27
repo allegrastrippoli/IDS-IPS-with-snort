@@ -1,0 +1,8 @@
+Ecco alcuni spunti per risolvere criticità rimaste e per portare avanti il lavoro:
+
+La rete è stata progettata soddisfacendo i requisiti di modularità e scalabilità. È ancora possibile aumentare il livello di modularità aggiungendo una terza macchina dedicata a Snort. Snort è per definizione un IDS/IPS network-based, può lavorare in modalità promiscua e intercettare indifferentemente tutti i pacchetti che transitano in rete, senza dover per forza analizzare i pacchetti sull'interfaccia esterna del firewall. Separare la macchina del firewall da quella che ospita il sistema di rilevazione e prevenzione delle intrusioni può risultare vantaggioso nello sfortunato caso in cui un host interno all'azienda attaccasse la vm firewall. Nell'ipotesi in cui la vm firewall subisse dei danni, Snort sarebbe comunque attivo su un'altra macchina.
+
+Nella realizzazione dell'IDS/IPS la responsabilità di prevenire gli attacchi è stata affidata a FWsnort. Fin da subito è emerso un limite di questa configurazione: FWsnort non lavora in real-time, le iptables non vengono aggiornate in tempo reale e quindi non mettono al riparo da attacchi non previsti dal set di regole utilizzate in quel momento. Una soluzione più efficiente sarebbe utilizzare una modalità di esecuzione chiamata inline, che permette di aggiornare le regole iptables in modo dinamico.
+
+Le tre verifiche descritte nel capitolo 6 hanno permesso di mostrare alcune delle funzionalità di Snort, ma c'è ampio margine per espandere il panorama di test. Sarebbe interessante studiare il comportamento in caso di un exploit con payload maligno, per vedere se le regole scaricate siano sufficienti per individuare stringhe e caratteri peculiari di un attacco.
+

@@ -1,0 +1,54 @@
+\begin{thebibliography}{MRR20}
+
+\bibitem[cyb]{cybersecurity360}
+\url{https://www.cybersecurity360.it/soluzioni-aziendali/}.
+
+\bibitem[cyv]{cyvatar}
+\url{https://cyvatar.ai/write-configure-snort-rules/}.
+
+\bibitem[ext]{extraordy}
+\url{https://www.extraordy.com/}.
+
+\bibitem[fra]{frankfu}
+\url{https://frankfu.click/security/ids/how-to-detect-nmap-scan-using-snort/}.
+
+\bibitem[gee]{geeksforgeeks}
+\url{https://www.geeksforgeeks.org/nmap-command-in-linux-with-examples/}.
+
+\bibitem[man]{manual-snort}
+\url{http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node17.html/}.
+
+\bibitem[MRR20]{Snort:2020}
+Shatel group of companies October~13 Milad Rezaei~RD.
+\newblock {\em Snort 2.9.16.1 on Centos 8}.
+\newblock 2020.
+
+\bibitem[Ras07]{FWSnort}
+Michael Rash.
+\newblock {\em Linux Firewalls}.
+\newblock 2007.
+
+\bibitem[Reh]{AdvancedIDSTechniquest}
+Rafeeq~Ur Rehman.
+\newblock {\em Intrusion Detection Systems with Snort: Advanced IDS Techniques
+  Using Snort, Apache, MySQL, PHP, ACID}.
+
+\bibitem[sca]{scapy}
+\url{https://scapy.readthedocs.io/en/latest/}.
+
+\bibitem[sno]{snort}
+\url{https://www.snort.org/}.
+
+\bibitem[sof]{softwarelab}
+\url{https://softwarelab.org/it/exploit/}.
+
+\bibitem[tec]{techrepublic}
+\url{https://www.techrepublic.com/article/using-snort-for-intrusion-detection/}.
+
+\bibitem[try]{tryhackme}
+\url{https://tryhackme.com/room/snort/}.
+
+\bibitem[zer]{zerounoweb}
+\url{https://www.zerounoweb.it/cloud-computing/}.
+
+\end{thebibliography}

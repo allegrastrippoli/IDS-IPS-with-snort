@@ -1,0 +1,148 @@
+\section{Sicurezza e vulnerabilità della rete}
+
+Quando si realizza un sistema di difesa si procede per livelli, si utilizzano strumenti di difesa passivi e poi, a seconda della necessità, si fa affidamento a tecnologie più evolute (ma più costose) per il controllo del traffico e per la prevenzione di attacchi. Si possono strutturare meccanismi di difesa intelligenti che riconoscano i pattern di attacco e adottino delle misure per contrastarli. Il primo passo è acquisire una conoscenza profonda delle possibili minacce e vulnerabilità della rete. In questo capitolo non viene offerta una panoramica completa, bensì uno scorcio che permetta di comprendere quali siano nel concreto le motivazioni che spingono gli utenti a introdurre sistemi di difesa.
+
+\subsection{Minacce comuni in rete}
+
+Per minacce ``comuni'' si intendono tutte quelle a cui un utente potrebbe andare incontro con un utilizzo sistematico dei principali servizi in rete. Un utente naviga siti web, gestisce la propria posta elettronica, utilizza pennette USB, esegue il download di file etc... e non sempre è consapevole di esporsi a dei rischi.
+Di seguito sono illustrati gli attacchi più comuni da cui difendersi ~\cite{softwarelab}.
+
+\subsubsection{Virus, worm}
+
+Virus, worm e altri agenti automatici si diffondono autonomamente tramite meccanismi di infezione. Alla fase di propagazione segue quella di attivazione, causata da un comportamento umano, da un processo schedulato oppure potrebbe avvenire una auto-attivazione. Una volta che un malware ha attaccato un sistema vulnerabile può mostrare i suoi effetti immediatamente oppure può stare nascosto anche per molto tempo prima di causare i danni.
+Esistono diversi tipi di malware come:
+\begin{itemize}
+    \item \textbf{Spyware} raccoglie dati e monitora attività dell'utente
+    \item \textbf{Ransomware} effettua una crittografia dei dati e li tiene in ``ostaggio''
+    \item  \textbf{Trojan}  (cavallo di Troia) si presenta come un normale programma, in realtà è stato realizzato per uno scopo malevolo;
+\end{itemize}
+
+Il firewall e software antivirus possono essere due strumenti di difesa.
+
+\subsubsection{Scan}
+
+Gli Scan su larga scala ricercano indiscriminatamente sistemi vulnerabili e sfruttano buchi di sicurezza generalmente noti. È comune rilevare vulnerabilità nei servizi non aggiornati recentemente, potrebbero essere sfruttate per tentare attacchi. Un esempio è l'RCE (remote code execution) che permette all'autore dell'attacco di eseguire codice da remoto sul computer vittima e tramite un'escalation dei privilegi acquisire il controllo della macchina (ossia l'accesso come root).
+
+\subsubsection{Phishing}
+
+Il phishing consiste nel cercare di acquisire con l’inganno le informazioni personali degli utenti, sfruttando email e siti web con loghi falsificati. Il termine phishing ricorda il termine  ``fishing'', proprio perché come nella pesca vengono utilizzate delle esche per irretire le proprie vittime. È un tipo di attacco molto popolare e diffuso, fa leva sull'incapacità di molti utenti di riconoscerlo. Spesso sembrano email urgenti e quindi gli utenti sono incentivati ad aprirle, oppure gli url sono molto simili a quelli di siti ufficiali e quindi non è facile capire che siano falsi.
+
+\subsubsection{Exploit}
+
+Un exploit è un frammento di codice che, sebbene non sia di per sé dannoso, può contenere un payload maligno. Gli exploit sono generalmente ospitati su siti web compromessi, un utente non attento potrebbe finire su un sito non sicuro, oppure potrebbe esservi reindirizzato aprendo un'email sospetta (esempio di phishing).
+Quando una vulnerabilità in un certo software viene resa nota, viene rilasciata una patch dalla community di sviluppo o dalla casa madre. Questa patch consiste in un aggiornamento che va a risolvere la falla di sicurezza sfruttata dall'exploit.
+Aggiornando i servzi installati ed il sistema operativo è possibile limitare questo tipo di attacchi.
+Un esempio di payload maligno è una backdoor. Le backdoor (porte di servizio) rappresentano degli strumenti persistenti che danno accesso al sistema in grado di superare le procedure di sicurezza attivate. In questo modo utenti non autorizzati sono in grado di accedere a un computer all’insaputa dell’utente.
+
+\subsubsection{DDoS e DoS}
+
+Un attacco DDoS (Distributed Denial of Service) consiste nell'inviare un flusso continuo di traffico ai servizi online, come i siti web, fino a quando il server non è più in grado di soddisfare queste richieste e va in crash. Si distingue dall'attacco DoS (Denial of Service) perché il traffico è proveniente da più fonti e non da un singolo dispositivo.
+In questo modo gli utenti reali che hanno necessità di accedere ad una risorsa di rete ne sono impossibilitati. Più aumenta il numero di fonti da cui parte la minaccia e più è difficile identificare l'autore primario. Esistono diverse tipologie di DDoS: può trattarsi di un attacco indiscriminato, di un attacco mirato a colpire un protocollo o addirittura una specifica vulnerablità di un'applicazione web. Ad accumunarli è il concetto di  ``flood'' (inondazione) e le modalità con cui vengono realizzati, spesso tramite una rete di bot.
+
+
+\section{Difesa della rete}
+
+Per evitare attacchi, accessi al sistema e connessioni non autorizzate bisogna adottare delle misure che restringano il campo in cui queste intromissioni possano avvenire. Il principale punto di accesso ad un sistema è tramite una porta TCP o UDP aperta, e quindi è necessario individuare quali porte sia effettivamente necessario tenere aperte e trovare un criterio, uno strumento, che permetta di chiudere qualsiasi altro punto di accesso all'host dalla rete. È funzionale a questo scopo introdurre il concetto di firewall.
+
+\subsection{Firewall}
+
+Il firewall è uno strumento di difesa che implementa delle politiche di sicurezza, permette di bloccare il traffico non autorizzato. I Firewall vengono classificati secondo due tipologie:
+\begin{itemize}
+    \item \textbf{Host-based}: se controlla tutto il traffico in entrata e in uscita generato da un host.
+    \item \textbf{Newtork-based} se filtra tutto il traffico in entrata e in uscita da una sottorete.
+\end{itemize}
+
+Ad esempio se si immaginano due sottoreti, una interna (LAN), una esterna (internet), il firewall viene posto in mezzo, in modo da venire attraversato dal traffico che la LAN e internet si scambiano.
+
+\subsubsection{Firewall con iptables}
+
+È oggetto di analisi iptables, un software firewall utilizzato in ambienti UNIX. Un firewall di questo tipo permette ad un amministratore di scrivere delle regole che moderino il passaggio di pacchetti, affinché tutto il traffico non necessario venga bloccato.
+Come prima cosa, bisogna settare le politiche di default per le catene di input, output e forward in ACCEPT (tutti i pacchetti vengono accettati) oppure in DROP (nessun pacchetto viene accettato). Se viene scelta una politica in ACCEPT le regole saranno in DROP, e viceversa. Questo perché se di default tutti i pacchetti vengono accettati servono delle regole per bloccarli, al contrario se di default tutti i pacchetti vengono scartati servono delle regole per autorizzarli.
+È sconsigliato utilizzare una politica in ACCEPT perché il firewall potrebbe risultare più ``lasco'' rispetto ad uno che adotta una politica DROP. Se arriva un pacchetto su una porta che non corrisponde nessuna regola, viene accettato. Può capitare che l'amministratore si dimentichi di scrivere una regola e quindi che vengano accettati pacchetti senza che ve ne sia controllo.Tuttavia con una politica DROP bisogna stare attenti a non dimenticarsi di far passare tutto il traffico autorizzato.
+Ad esempio, se l'amministratore si connette in SSH ad un server e modifica il firewall (che utilizza una politica in DROP) trascurando la regola che consente il traffico SSH, la connessione con il server viene repentinamente interrotta.
+Dopo aver scelto la policy, è necessario scrivere le regole di input, output, forwarding, prerouting o postrouting, il protocollo (TCP o UDP), l'interfaccia, la porta e lo stato in cui è ammessa la connessione.
+
+\begin{itemize}
+    \item Una regola è di \textbf{input} o \textbf{output} se riguarda il traffico in ingresso o in uscita dal firewall.
+    \item Una regola è di \textbf{forwarding} se i pacchetti sono solo di passaggio per il firewall, che agisce da router, ma sono destinati a un'host interno o esterno alla rete. I pacchetti viaggiano attraverso catene di forwarding. Serve una catena per ogni ``flusso'' di traffico.
+    \item Una regola di \textbf{prerouting} viene applicata ai pacchetti in entrata al sistema, prima che questi vengano confrontati con le regole iptables.
+    \item  Una regola di \textbf{postrouting} applicata ai pacchetti in uscita dal sistema dopo che questi vengano confrontati con le regole iptables.
+\end{itemize}
+
+Per quanto riguarda gli stati di una connessione, iptables è in grado di determinare se si tratta di:
+
+\begin{itemize}
+    \item \textbf{NEW} - una nuova richiesta di connessione da parte di un client (SYN TCP o nuovo pacchetto UDP).
+    \item \textbf{ESTABLISHED} - pacchetti relativi a connessioni già stabilite.
+    \item \textbf{RELATED} - pacchetti correlati a connessioni esistenti e ESTABILSHED, come ad esempio il traffico FTP
+\end{itemize}
+
+Ecco degli esempi di regole relativi alla porta 443:
+
+\begin{verbatim}
+iptables -A INPUT -p tcp --sport 443 -i ens160 -m state --state
+ESTABLISHED -j ACCEPT  
+\end{verbatim}
+
+Questo è un esempio di regola di input permette di accettare i pacchetti in entrata appartenenti a una connessione di tipo ESTABLISHED sull'interfaccia ens160 del firewall, protocollo tcp, source port 443.
+
+\begin{verbatim}
+iptables -A ie -p tcp --dport 443 -m state --state NEW,ESTABLISHED 
+-j ACCEPT
+\end{verbatim}
+
+Questo è un esempio di regola di forwarding, ``ie'' è il nome della catena che consente il transito di pacchetti dalla rete interna verso quella esterna. Come nell'esempio delle regole input output è specificata la porta, questa volta si tratta di una destination port. Il significato della regola è il seguente: è permesso il forward dei pacchetti di tipo NEW ed ESTABLISHED dalla LAN verso internet.
+
+\begin{verbatim}
+iptables -t nat -A PREROUTING -i ens160 -s 0/0 -d 10.222.111.2 
+-p tcp --dport 443 -j DNAT --to 10.50.50.3:443
+\end{verbatim}
+
+Questo è un esempio di regola di prerouting. Il significato della regola è: tutti i pacchetti che arrivano sull'interfaccia ens160 del firewall, che hanno come source un indirizzo IP qualsiasi (0/0) e come destinazione l'IP 10.222.111.2 (IP associato all'ens160) verranno inoltrati all'host che ha indirizzo IP 10.50.50.3 sulla porta 443.
+
+Se si fa riferimento alla pila ISO-OSI, le regole di iptables permettono un buon grado di dettaglio nella gestione del traffico ai livelli di rete (liv. 3) e di trasporto (liv. 4), ma non di distinguere i protocolli dei livelli applicativi (HTTP, FTP, SMTP etc...)
+Si ha dunque la necessità di utilizzare un apparato più intelligente, che abbia la possibilità di analizzare il traffico ai livelli superiori della pila ISO-OSI ed eventualmente intraprendere delle azioni a difesa del sistema. Per questo, il firewall lavora spesso insieme a sistemi di rilevazione e prevenzione delle intrusioni, i cosiddetti IDS e IPS ~\cite{extraordy}.
+
+\subsection{Intrusion Detection System}
+
+Un Intrusion Detection System (IDS) è un dispositivo software o hardware che viene utilizzato per identificare attività anomale, accessi non autorizzati a un computer o a una rete di computer. L'intercettazione dei pacchetti sospetti avviene principalmente monitorando il traffico e analizzando i log di sistema. Mettere in piedi un meccanismo di controllo di questo tipo aumenta le possibilità di poter riconoscere pattern di attacco noti, possibili scan e alte minacce, in modo da poter reagire tempestivamente. Gli IDS possono anche sfruttare database, librerie e regole per rilevare le intrusioni. Quando un'attività di rete corrisponde a una regola nota all'IDS, questo segnala il tentativo di intrusione. Il limite principale è che l'affidabilità di questo strumento dipende interamente dalla tempestività con cui il database viene aggiornato.
+Quando gli IDS rilevano una violazione della sicurezza, la notificano generando degli alert, ed è poi compito dell'amministratore fermare l'attività sospetta.
+
+\subsection{Intrusion Prevention System}
+
+Un dispositivo che richiede meno intervento da parte dell'amministratore è un Intrusion Prevention System (IPS). Prende autonomamente delle decisioni per contrastare possibili attacchi, isolando i pacchetti sospetti interrompendo connessioni e bloccando IP. Questo obiettivo può essere raggiunto aggiornando la lista delle regole del firewall in modo dinamico.
+Alcuni limiti degli IDS-IPS sono l'incapacità di analizzare pacchetti cifrati (non è possibile estrarre il contenuto del pacchetto senza conoscere la chiave) e la necessità di dover essere costantemente aggiornati per far fronte anche alle nuove minacce.
+
+\subsection{Cosa deve garantire un buon IDS e un buon IPS}
+
+Gli IDS e IPS non sono strumenti infallibili e possono commettere degli errori ``di valutazione''. La qualità di un buon IDS e IPS dipende dal numero di falsi positivi e falsi negativi che rileva. Un falso positivo si verifica quando un IDS/IPS classifica come maligna un'attività che invece dovrebbe essere autorizzata. Ad esempio i pacchetti danneggiati lungo il percorso o generati da software con bug o problemi possono essere riconosciuti erroneamente come tentativi di intrusione e considerati come pacchetti malevoli. Il problema dei falsi positivi è meno dannoso di quello dei falsi negativi. Tutta l'attività sospetta che supera controlli, analisi dei pacchetti e raggiunge il destinatario può generare una quantità di danni variabile, fino a compromettere l'integrità dell'intero sistema. Prevenire i casi di falsi positivi e negativi è il principale obiettivo di un sistema di difesa.
+
+\subsection{Tecniche usate}
+
+Così come il firewall implementa politiche di sicurezza, anche gli IDS e gli IPS utilizzano delle strategie, in questo caso strategie di detection. Si dividono in tre tipi.  ~\cite{cybersecurity360}.
+
+\subsubsection{Signature-based detection}
+
+Una signature (firma) è un metodo di rilevamento basato sulla presenza di segni o caratteristiche distintive in un exploit. Le signature devono essere preconfigurate e sono statiche, ovvero non cambiano se non vengono aggiornate. Si tratta del metodo più semplice ed efficace per rilevare gli attacchi noti. Questo tipo di rilevamento è in genere classificato come ``day after detection'', poiché il virus deve aver infettato qualcuno (deve essere noto) affinché sia possibile scrivere una firma. Le aziende antivirus utilizzano i sistemi signature-based per proteggere i propri clienti dalle epidemie di virus.
+
+\subsubsection{Behaviour-based detection}
+
+Behaviour-based detection, per cui il sistema è in grado di confrontare il comportamento noto/normale con quello sconosciuto/anormale. Il vantaggio è poter rilevare efficacemente nuovi attacchi e vulnerabilità non viste prima. È meno dipendente dai protocolli e dal sistema operativo, e facilita la rilevazione di abusi di privilegi. Tuttavia bisogna superare la difficoltà di dover istruire il sistema in modo corretto.
+
+\subsubsection{Stateful protocol analysis detection}
+
+Stateful protocol analysis detection (o policy-based detection). Stateful significa che viene considerato e tracciato lo stato dei protocolli. I pacchetti quindi vengono analizzati nell’insieme, e non solo singolarmente. Questo metodo identifica le anomalie degli stati del protocollo, e considera benigne solo le attività conformi agli standard dei protocolli internazionali
+
+\subsection{Tipi di IDS: NIDS e HIDS}
+
+Un \textbf{NIDS}, Network Intrusion Detection System è un sistema che monitora il traffico da e verso la LAN. I pacchetti che corrispondono a delle signatures vengono registrati in alert generati dal sistema. Un NIDS configura la scheda di rete per funzionare in modo “promiscuo”, il che significa che saranno fatti passare i pacchetti attraverso lo stack di rete indipendentemente dal fatto che siano o meno indirizzati a una particolare macchina. Un NIDS verificha il payload dei pacchetti (e a volte anche gli header) per stabilire se siano presenti o meno tracce di codice maligno. Exploit, virus, worm generano traffico di rete che, se opportunamente intercettato e studiato, può smascherare l'attacco prima che questo abbia generato danni. Una specifica stringa in un payload potrebbe permettere di identificare un exploit maligno, così come specifiche opzioni negli header del TCP/IP potrebbero rivelare un altro genere di attacco. Sulla base delle signatures, il motore di ricerca, uno dei componenti principali dell'IDS che si occupa di elaborare e analizzare i pacchetti applicando le regole, deciderà se contrassegnare un pacchetto come potenzialmente maligno. Al contrario di un NIDS, un \textbf{HIDS}, Host-based Intrusion Detection System indaga il traffico di un singolo dispositivo endpoint, e non dell'intera sottorete, per il resto il funzionamento si può considerare analogo al NIDS ~\cite{zerounoweb}.
+
+\subsection{Tipi di IPS: NIPS, HIPS, NBA, WIPS}
+
+Un \textbf{NIPS}, Network Intrusion Prevention System come i NIDS si occupa di controllare il traffico da e verso la LAN. A differenza di questo però, intraprende azioni a discapito dei pacchetti sospetti. Oltre a segnalare attività anomale all'amministratore, un pacchetto può essere dropped o rejected. Un NIPS potrebbe anche bloccare un IP mittente che non considera affidabile.
+Analogamente agli HIDS esistono gli \textbf{HIPS}, che bloccano il traffico sospetto di un singolo dispositivo endpoint.
+Una strategia behaviour-based è invece implementata dall'\textbf{NBA}, Network Behaviour Analysis. A differenza di un NIPS richiede un periodo di formazione (noto anche come baseline) per apprendere il traffico normale ed essere così in grado di distinguerlo dal traffico anomalo. Identificare flussi di traffico insoliti può essere un ottimo modo per prevenire attacchi DoS e DDoS. Uno dei parametri per confrontare i vari sistemi di prevenzione delle intrusione è in base al numero di falsi postivi e falsi negativi. Un sistema NBA addestrato potrebbe essere più performante di un normale IPS. Tuttavia un NBA mal istruito potrebbe raggiungere un risultato opposto, potrebbe non essere grado di distinguere attività benigne da quelle maligne.
+Infine un sistema che sfrutta l'analisi dei protocolli (stateful protocol analysis detection) è il \textbf{WIPS}, Wireless Intrusion Prevention System. Lo scopo principale di un WIPS è impedire l'accesso non autorizzato alle reti locali da parte di dispositivi wireless ~\cite{tryhackme}.
+
+
+
